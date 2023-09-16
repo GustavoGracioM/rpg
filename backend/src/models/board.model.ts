@@ -3,6 +3,7 @@ import {
 /* eslint-disable import/no-cycle */
 import Character from './character.model';
 import BoardCharacter from './board.character';
+import HistoryRoll from './history.roll.model';
 import User from './user.model';
 
 @Table({
@@ -31,6 +32,8 @@ export default class Board extends Model {
   })
     userId?: number;
 
+  @HasMany(() => HistoryRoll)
+    historyRoll?: HistoryRoll;
 
   @BelongsToMany(() => Character, () => BoardCharacter)
     characters?: Character[];

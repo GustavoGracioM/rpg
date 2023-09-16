@@ -9,6 +9,7 @@ import Inventory from './inventory.model';
 import User from './user.model';
 import Expertise from './expertise.model';
 import Attacks from './attacks.model';
+import HistoryRoll from './history.roll.model';
 import BoardCharacter from './board.character';
 import Board from './board.model';
 
@@ -97,6 +98,10 @@ export default class Character extends Model {
 
   @HasMany(() => Attacks)
     attacks?: Attacks;
+
+  @HasMany(() => HistoryRoll)
+    historyRoll?: HistoryRoll;
+
   @BelongsToMany(() => Board, () => BoardCharacter)
     boards?: Board[];
 }

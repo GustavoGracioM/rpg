@@ -8,6 +8,7 @@ import Inventory from '../models/inventory.model';
 import User from '../models/user.model';
 import Expertise from '../models/expertise.model';
 import Attacks from '../models/attacks.model';
+import HistoryRoll from '../models/history.roll.model';
 import Board from '../models/board.model';
 import BoardCharacter from '../models/board.character';
 const configDB: object = {
