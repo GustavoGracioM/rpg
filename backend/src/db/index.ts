@@ -3,6 +3,7 @@ import { config, dialect } from '../config/db.config';
 import Character from '../models/character.model';
 import Attributes from '../models/attributes.model';
 import Class from '../models/class.model';
+import Skills from '../models/skills.model';
 import Expertise from '../models/expertise.model';
 const configDB: object = {
   database: config.DB,
