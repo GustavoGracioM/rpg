@@ -7,6 +7,7 @@ import Skills from '../models/skills.model';
 import Inventory from '../models/inventory.model';
 import User from '../models/user.model';
 import Expertise from '../models/expertise.model';
+import Attacks from '../models/attacks.model';
 const configDB: object = {
   database: config.DB,
   username: config.USER,

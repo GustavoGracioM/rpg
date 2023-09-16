@@ -2,8 +2,10 @@ import {
   Model, 
   Table, 
   Column, DataType, ForeignKey, BelongsTo, HasMany, BelongsToMany } from 'sequelize-typescript';
+/* eslint-disable import/no-cycle */
 import Attributes from './attributes.model';
 import Class from './class.model';
+import Inventory from './inventory.model';
 import User from './user.model';
 import Expertise from './expertise.model';
 import Attacks from './attacks.model';
@@ -87,4 +89,9 @@ export default class Character extends Model {
   @BelongsTo(() => User)
     user?: User;
 
+  @HasMany(() => Inventory)
+    inventory?: Inventory;
+
+  @HasMany(() => Attacks)
+    attacks?: Attacks;
 }
