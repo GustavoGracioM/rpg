@@ -8,6 +8,7 @@ import Inventory from '../models/inventory.model';
 import User from '../models/user.model';
 import Expertise from '../models/expertise.model';
 import Attacks from '../models/attacks.model';
+import Board from '../models/board.model';
 const configDB: object = {
   database: config.DB,
   username: config.USER,
@@ -17,6 +18,7 @@ const configDB: object = {
   dialect,
   models: [Character, 
     Attributes, Class, Skills, Inventory, User, Expertise, Attacks, HistoryRoll,
+    Board, BoardCharacter, FriendsList,
   ],
   pool: {
     max: config.pool.max,

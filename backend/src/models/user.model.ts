@@ -1,6 +1,7 @@
 import { Model, Table, Column, DataType, HasMany } from 'sequelize-typescript';
 /* eslint-disable import/no-cycle */
 import Character from './character.model';
+import Board from './board.model';
 
 @Table({
   tableName: 'user',
@@ -36,4 +37,6 @@ export default class User extends Model {
   @HasMany(() => Character)
     character?: Character;
 
+  @HasMany(() => Board)
+    board?: Board;
 }
