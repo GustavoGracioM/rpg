@@ -9,6 +9,7 @@ import User from '../models/user.model';
 import Expertise from '../models/expertise.model';
 import Attacks from '../models/attacks.model';
 import Board from '../models/board.model';
+import BoardCharacter from '../models/board.character';
 const configDB: object = {
   database: config.DB,
   username: config.USER,

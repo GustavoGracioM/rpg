@@ -9,6 +9,9 @@ import Inventory from './inventory.model';
 import User from './user.model';
 import Expertise from './expertise.model';
 import Attacks from './attacks.model';
+import BoardCharacter from './board.character';
+import Board from './board.model';
+
 @Table({
   tableName: 'character',
   timestamps: false,
@@ -94,4 +97,6 @@ export default class Character extends Model {
 
   @HasMany(() => Attacks)
     attacks?: Attacks;
+  @BelongsToMany(() => Board, () => BoardCharacter)
+    boards?: Board[];
 }

@@ -1,6 +1,8 @@
 import { 
   Model, Table, Column, DataType, BelongsToMany, HasMany, ForeignKey } from 'sequelize-typescript';
+/* eslint-disable import/no-cycle */
 import Character from './character.model';
+import BoardCharacter from './board.character';
 import User from './user.model';
 
 @Table({
@@ -30,4 +32,6 @@ export default class Board extends Model {
     userId?: number;
 
 
+  @BelongsToMany(() => Character, () => BoardCharacter)
+    characters?: Character[];
 }
