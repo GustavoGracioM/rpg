@@ -2,6 +2,11 @@ import {
   Model, 
   Table, 
   Column, DataType, ForeignKey, BelongsTo, HasMany, BelongsToMany } from 'sequelize-typescript';
+import Attributes from './attributes.model';
+import Class from './class.model';
+import User from './user.model';
+import Expertise from './expertise.model';
+import Attacks from './attacks.model';
 @Table({
   tableName: 'character',
   timestamps: false,
@@ -61,6 +66,16 @@ export default class Character extends Model {
 
   @BelongsTo(() => Class)
     class?: Class;
+
+  @ForeignKey(() => Expertise)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'expertise_id',
+  })
+    expertiseId?: number;
+
+  @BelongsTo(() => Expertise)
+    expertise?: Expertise;
 
   @ForeignKey(() => User)
   @Column({

@@ -3,6 +3,7 @@ import { config, dialect } from '../config/db.config';
 import Character from '../models/character.model';
 import Attributes from '../models/attributes.model';
 import Class from '../models/class.model';
+import Expertise from '../models/expertise.model';
 const configDB: object = {
   database: config.DB,
   username: config.USER,
@@ -11,7 +12,7 @@ const configDB: object = {
   port: config.PORT,
   dialect,
   models: [Character, 
-    Attributes, Class, Skills, Inventory, User, SkillsUpdate, Attacks, HistoryRoll,
+    Attributes, Class, Skills, Inventory, User, Expertise, Attacks, HistoryRoll,
   ],
   pool: {
     max: config.pool.max,
