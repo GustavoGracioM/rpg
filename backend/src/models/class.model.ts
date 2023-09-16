@@ -1,5 +1,7 @@
 import { Model, Table, Column, DataType, HasMany } from 'sequelize-typescript';
 /* eslint-disable import/no-cycle */
+import Character from './character.model';
+
 @Table({
   tableName: 'class',
   timestamps: false,
@@ -18,3 +20,7 @@ export default class Class extends Model {
     field: 'type',
   })
     type?: string;
+
+  @HasMany(() => Character)
+    character?: Character;
+}

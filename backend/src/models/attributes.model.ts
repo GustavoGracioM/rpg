@@ -1,5 +1,7 @@
 import { Model, Table, Column, DataType, HasMany } from 'sequelize-typescript';
 /* eslint-disable import/no-cycle */
+import Character from './character.model';
+
 @Table({
   tableName: 'attributes',
   timestamps: false,
@@ -47,3 +49,7 @@ export default class Attributes extends Model {
     defaultValue: 0,
   })
     vigor?: number;
+
+  @HasMany(() => Character)
+    character?: Character;
+}

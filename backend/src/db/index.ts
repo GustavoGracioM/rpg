@@ -1,5 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
 import { config, dialect } from '../config/db.config';
+import Character from '../models/character.model';
+import Attributes from '../models/attributes.model';
+import Class from '../models/class.model';
 const configDB: object = {
   database: config.DB,
   username: config.USER,
@@ -7,6 +10,8 @@ const configDB: object = {
   host: config.HOST,
   port: config.PORT,
   dialect,
+  models: [Character, 
+    Attributes, Class, Skills, Inventory, User, SkillsUpdate, Attacks, HistoryRoll,
   ],
   pool: {
     max: config.pool.max,
