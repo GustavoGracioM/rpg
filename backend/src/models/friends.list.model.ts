@@ -32,6 +32,7 @@ export default class FriendsList extends Model {
   @Column({
     type: DataType.STRING(255),
     field: 'status',
+    defaultValue: 'pending',
   })
     status?: string;
 
