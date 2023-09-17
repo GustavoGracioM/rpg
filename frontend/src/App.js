@@ -10,6 +10,8 @@ import Boards from './pages/Boards/Boards';
 import Board from './pages/Boards/Board';
 import BoardCharacter from './pages/Boards/BoardCharacters';
 import BoardHistory from './pages/Boards/BoardHistory';
+import InviteFriends from './pages/InviteFriends/InviteFriends';
+
 function App() {
   return (
     <Routes>
@@ -29,6 +31,7 @@ function App() {
         path="board-history/:boardId"
         element={ <BoardHistory /> }
       />
+      <Route path="/invites" element={ <InviteFriends /> } />
     </Routes>
   );
 }
