@@ -10,7 +10,7 @@ import Expertise from '../models/expertise.model';
 import Attacks from '../models/attacks.model';
 import HistoryRoll from '../models/history.roll.model';
 import Board from '../models/board.model';
-import BoardCharacter from '../models/board.character';
+import BoardCharacter from '../models/board.user';
 import FriendsList from '../models/friends.list.model';
 
 const configDB: object = {
