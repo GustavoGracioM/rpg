@@ -8,7 +8,7 @@ function CreateBoard(prop) {
 
   const onSubmit = (data) => {
     api.post('/boards', { ...data, userId: user.id }).then(() => {
-      api.get('/boards').then((r) => setBoards(r.data));
+      api.post('/boards/user', { userId: user.id }).then((r) => setBoards(r.data));
     });
   };
 
