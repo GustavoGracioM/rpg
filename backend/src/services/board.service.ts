@@ -9,6 +9,8 @@ const boardService = {
 
   findById: async (id: number) => Board.findByPk(id),
 
+  findByUserId: async (userId: number) => Board.findAll({ where: { userId } }),
+
   update: async ({ id, name }: { id: number, name: string }) => {
     const result = await Board.update({ name }, { where: { id } });
     if (result[0] < 1) throw new NotFound('id board invalid');
