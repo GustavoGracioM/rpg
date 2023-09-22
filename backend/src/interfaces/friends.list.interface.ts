@@ -1,7 +1,7 @@
 interface IFriendsList {
   id?: number,
-  userId?: number,
-  friendId?: number,
+  userId: number,
+  friendId: number,
   status: string
 }
 
