@@ -12,7 +12,7 @@ import userRoute from './routes/user.route';
 import attacksRoute from './routes/attacks.route';
 import historyRollRoute from './routes/history.roll.route';
 import boardRoute from './routes/board.route';
-import boardCharacterRoute from './routes/board.character.route';
+import boardUserRoute from './routes/board.user.route';
 import friendsListRoute from './routes/friends.list.route';
 
 const app = express();
@@ -28,7 +28,7 @@ app.use('/expertise', expertiseRoute);
 app.use('/attacks', attacksRoute);
 app.use('/history-roll', historyRollRoute);
 app.use('/boards', boardRoute);
-app.use('/board-character', boardCharacterRoute);
+app.use('/board-user', boardUserRoute);
 app.use('/friends-list', friendsListRoute);
 app.use(userRoute);
 
