@@ -1,7 +1,7 @@
 import { 
   Model, 
   Table, 
-  Column, DataType, ForeignKey, BelongsTo, HasMany, BelongsToMany } from 'sequelize-typescript';
+  Column, DataType, ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript';
 /* eslint-disable import/no-cycle */
 import Attributes from './attributes.model';
 import Class from './class.model';
@@ -10,8 +10,6 @@ import User from './user.model';
 import Expertise from './expertise.model';
 import Attacks from './attacks.model';
 import HistoryRoll from './history.roll.model';
-import BoardCharacter from './board.character';
-import Board from './board.model';
 
 @Table({
   tableName: 'character',
@@ -60,7 +58,11 @@ export default class Character extends Model {
   })
     attributesId?: number;
 
-  @BelongsTo(() => Attributes)
+  @BelongsTo(() => Attributes, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     attributes?: Attributes;
 
   @ForeignKey(() => Class)
@@ -70,7 +72,11 @@ export default class Character extends Model {
   })
     classId?: number;
 
-  @BelongsTo(() => Class)
+  @BelongsTo(() => Class, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     class?: Class;
 
   @ForeignKey(() => Expertise)
@@ -80,7 +86,11 @@ export default class Character extends Model {
   })
     expertiseId?: number;
 
-  @BelongsTo(() => Expertise)
+  @BelongsTo(() => Expertise, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     expertise?: Expertise;
 
   @ForeignKey(() => User)
@@ -90,18 +100,31 @@ export default class Character extends Model {
   })
     userId?: number;
 
-  @BelongsTo(() => User)
+  @BelongsTo(() => User, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     user?: User;
 
-  @HasMany(() => Inventory)
+  @HasMany(() => Inventory, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     inventory?: Inventory;
 
-  @HasMany(() => Attacks)
+  @HasMany(() => Attacks, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     attacks?: Attacks;
 
-  @HasMany(() => HistoryRoll)
+  @HasMany(() => HistoryRoll, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     historyRoll?: HistoryRoll;
-
-  @BelongsToMany(() => Board, () => BoardCharacter)
-    boards?: Board[];
 }
