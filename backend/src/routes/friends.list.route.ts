@@ -4,6 +4,7 @@ import friendsListController from '../controllers/friends.list.controller';
 const route = Router();
 
 route.get('/', friendsListController.findAll);
+route.post('/my', friendsListController.findMyFriends);
 route.post('/', friendsListController.create);
 route.post('/invites', friendsListController.findInvites);
 route.delete('/', friendsListController.delete);
