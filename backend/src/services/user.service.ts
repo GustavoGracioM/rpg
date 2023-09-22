@@ -7,6 +7,11 @@ const excludePassword = { attributes: {
   exclude: ['password'] } };
 
 const userService = {
+  isUserName: async (name:string) => {
+    const result = await User.findOne({ where: { name } });
+    if (result) throw new NotFound('user name already exists');
+  }, 
+
   create: async ({ name, email, password }: IUser) => {
     const passwordEncode = jwt.encode({ password });
     const result = await User.create({
@@ -36,7 +41,7 @@ const userService = {
 
   findByUserName: async (name:string) => {
     const user = await User.findOne({ where: { name }, ...excludePassword });
-    if (!user) throw new NotFound('not  found user name');
+    if (!user) throw new NotFound('not found user name');
     return user;
   },
 
