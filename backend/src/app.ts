@@ -5,7 +5,7 @@ import errorHandler from './middlewares/errorHandeler.middlewares';
 import { attacksRoute, attributesRoute, boardRoute, boardUserRoute, 
   characterRoute, classRoute, expertiseRoute, friendsListRoute, 
   historyRollRoute, inventoryRoute, userRoute, ritualRoute,
-  originsRoute, trailRoute, trainingRoute, expertiseCharacterRoute } from './routes';
+  originsRoute, trailRoute, trainingRoute, expertiseCharacterRoute, skillRoute } from './routes';
 
 const app = express();
 app.use(express.json());
@@ -26,6 +26,7 @@ app.use('/origin', originsRoute);
 app.use('/trail', trailRoute);
 app.use('/training', trainingRoute);
 app.use('/expertise-character', expertiseCharacterRoute);
+app.use('/skill', skillRoute);
 app.use(userRoute);
 
 app.use(errorHandler);

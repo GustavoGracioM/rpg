@@ -14,6 +14,7 @@ import originsRoute from './origins.route';
 import trailRoute from './trail.route';
 import trainingRoute from './training.route';
 import expertiseCharacterRoute from './expertise.character.route';
+import skillRoute from './skill.route';
 
 export {
   characterRoute,
@@ -32,4 +33,5 @@ export {
   trailRoute,
   trainingRoute,
   expertiseCharacterRoute,
+  skillRoute,
 };
