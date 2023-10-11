@@ -1,17 +1,21 @@
 import { Sequelize } from 'sequelize-typescript';
-import { config, dialect } from '../config/db.config';
+import { config, dialect } from './config/db.config';
 import Character from '../models/character.model';
 import Attributes from '../models/attributes.model';
 import Class from '../models/class.model';
-import Skills from '../models/skills.model';
+import Expertise from '../models/expertise.model';
 import Inventory from '../models/inventory.model';
 import User from '../models/user.model';
-import Expertise from '../models/expertise.model';
 import Attacks from '../models/attacks.model';
 import HistoryRoll from '../models/history.roll.model';
 import Board from '../models/board.model';
 import BoardCharacter from '../models/board.user';
 import FriendsList from '../models/friends.list.model';
+import Ritual from '../models/ritual.model';
+import Origins from '../models/origins.model';
+import Trail from '../models/trail.model';
+import ExpersiteCharacter from '../models/expertise.character.model';
+import Training from '../models/training.model';
 
 const configDB: object = {
   database: config.DB,
@@ -21,8 +25,9 @@ const configDB: object = {
   port: config.PORT,
   dialect,
   models: [Character, 
-    Attributes, Class, Skills, Inventory, User, Expertise, Attacks, HistoryRoll,
-    Board, BoardCharacter, FriendsList,
+    Attributes, Class, Expertise, Inventory, User, Attacks, HistoryRoll,
+    Board, BoardCharacter, FriendsList, Ritual, Origins, Trail, ExpersiteCharacter,
+    Training,
   ],
   pool: {
     max: config.pool.max,
