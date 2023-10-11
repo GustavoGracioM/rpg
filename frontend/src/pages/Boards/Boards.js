@@ -3,50 +3,46 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../service/api';
 import CreateBoard from '../../components/boards/CreateBoard';
 import verifyToken from '../../utils/verifyToken';
+import NavBar from '../../components/navbar/NavBar';
+import BoardsList from '../../components/boards/BoardList';
 
 function Boards() {
   const navigate = useNavigate();
   const [boards, setBoards] = useState([]);
+  const [boardsFriends, setBoardsFriends] = useState([]);
   const [user, setUser] = useState({});
-  const deleteBoard = (id) => {
-    api.delete(`/boards/${id}`).then(() => {
-      api.get('/boards').then((r) => setBoards(r.data));
-    });
-  };
 
   useEffect(() => {
     verifyToken().then((userInfo) => {
       setUser(userInfo);
-      api.get('/boards').then((r) => setBoards(r.data));
+      api.post('/boards/user', { userId: userInfo.id }).then((r) => setBoards(r.data));
+      api.post('/board-user/filter', { userId: userInfo.id, status: 'approved' })
+        .then((r) => setBoardsFriends(r.data));
     }).catch(() => navigate('/login'));
   }, []);
   return (
     <>
+      <NavBar />
       <h1>Boards</h1>
       <CreateBoard user={ user } setBoards={ setBoards } />
-      {boards.map((b) => (
-        <>
-          <p key={ b.id }>{b.name}</p>
-          <button
-            type="button"
-            onClick={ () => navigate(`/boards/${b.id}`) }
-          >
-            Detalhes
-          </button>
-          <button
-            type="button"
-            onClick={ () => navigate(`/board-history/${b.id}`) }
-          >
-            Historico
-          </button>
-          <button
-            type="button"
-            onClick={ () => deleteBoard(b.id) }
-          >
-            Deletar
-          </button>
-        </>
-      ))}
+      <button type="button" onClick={ () => navigate('/boards/invites') }>
+        Invites
+      </button>
+      <h2>My Boards</h2>
+      {boards.map((b) => (<BoardsList
+        key={ b.id }
+        userId={ user.id }
+        board={ b }
+        setBoards={ setBoards }
+        isDelete
+      />))}
+      <h2>My Boards Friends</h2>
+      {boardsFriends.length >= 1 && boardsFriends
+        .map((b) => (<BoardsList
+          key={ b.board.id }
+          board={ b.board }
+          userId={ user.id }
+        />))}
     </>
   );
 }
