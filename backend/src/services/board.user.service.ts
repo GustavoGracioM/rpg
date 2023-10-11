@@ -29,6 +29,19 @@ const boardUserService = {
   findById: async (userId:number, status:string) => BoardUser
     .findAll({ ...returnFilter, where: { userId, status } }),
 
+  findByCheckApproved: async (boardId:number, myFriends:User[]) => {
+    const arrayPromise = myFriends.map(async (f) => {
+      const result = await BoardUser.findOne({ where: { boardId, userId: f.dataValues.id } });
+      return !result && f;
+    });
+    const arrayBool = await Promise.all(arrayPromise);
+    const result = myFriends.filter((v, i) => arrayBool[i]);
+    return result;
+  },
+
+  findByBoardId: async (boardId:number) => BoardUser
+    .findAll({ ...returnFilter, where: { boardId, status: 'approved' } }),
+  
   update: async (id: number, status:string) => {
     const result = await BoardUser.update({ status }, { where: { id } });
     if (result[0] < 1) throw new NotFound('id character invalid');
