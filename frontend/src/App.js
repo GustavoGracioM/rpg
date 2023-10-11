@@ -11,6 +11,8 @@ import Board from './pages/Boards/Board';
 import BoardCharacter from './pages/Boards/BoardCharacters';
 import BoardHistory from './pages/Boards/BoardHistory';
 import InviteFriends from './pages/InviteFriends/InviteFriends';
+import FriendsList from './pages/FriendsList/FriendsList';
+import BoardInvites from './pages/Boards/BoardInvites';
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
       <Route path="character/create" element={ <Create /> } />
       <Route path="register" element={ <Register /> } />
       <Route path="boards" element={ <Boards /> } />
+      <Route path="boards/invites" element={ <BoardInvites /> } />
       <Route path="boards/:id" element={ <Board /> } />
       <Route
         path="boards/:boardId/character/:characterId"
@@ -32,6 +35,7 @@ function App() {
         element={ <BoardHistory /> }
       />
       <Route path="/invites" element={ <InviteFriends /> } />
+      <Route path="/friends" element={ <FriendsList /> } />
     </Routes>
   );
 }
