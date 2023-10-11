@@ -1,31 +1,30 @@
-import IExpertise from '../interfaces/expertise.interface';
 import NotFound from '../middlewares/errors/NotFound.error';
-import Character from '../models/character.model';
 import Expertise from '../models/expertise.model';
+import defaultValue from '../utils/defaultValues';
 
 const expertiseService = {
+  isExists: async () => {
+    const expertiseResult = await Expertise.findAll();
+    const result = expertiseResult
+      .filter((exp) => defaultValue.expertiseValues
+        .filter((val) => val.name !== exp.name));
+    if (result.length > 1) throw new NotFound('expertise already exist');
+  }, 
 
-  create: async (expertise: IExpertise, characterId: number) => {
-    const result = await Expertise.create({ ...expertise });
-    await Character.update({ expertiseId: result.id }, { where: { id: characterId } });
-    return result;
+  create: async () => {
+    await expertiseService.isExists();
+    return defaultValue.expertiseValues.map(async (val) => Expertise.create(val));
   },
 
   findAll: async () => Expertise.findAll(),
 
-  findByPk: async (id:number) => Expertise.findByPk(id),
-
-  update: async (expertise: IExpertise, id: number) => {
-    const result = await Expertise.update(expertise, { where: { id } });
-    if (result[0] < 1) throw new NotFound(`expertise id=${expertise.id} invalid`);
-    return result;
-  }, 
+  findByName: async (name: string) => Expertise.findOne({ where: { name } }),
 
   delete: async () => Expertise.destroy({ where: {}, truncate: false }),
 
   deleteById: async (id: number) => {
     const result = await Expertise.destroy({ where: { id }, truncate: false });
-    if (result < 1) throw new NotFound(`expertise id=${id} invalid`);
+    if (result < 1) throw new NotFound('id expertise invalid');
     return result;
   },
 };
