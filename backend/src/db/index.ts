@@ -16,6 +16,7 @@ import Origins from '../models/origins.model';
 import Trail from '../models/trail.model';
 import ExpersiteCharacter from '../models/expertise.character.model';
 import Training from '../models/training.model';
+import Skill from '../models/skill.model';
 
 const configDB: object = {
   database: config.DB,
@@ -27,7 +28,7 @@ const configDB: object = {
   models: [Character, 
     Attributes, Class, Expertise, Inventory, User, Attacks, HistoryRoll,
     Board, BoardCharacter, FriendsList, Ritual, Origins, Trail, ExpersiteCharacter,
-    Training,
+    Training, Skill, 
   ],
   pool: {
     max: config.pool.max,
