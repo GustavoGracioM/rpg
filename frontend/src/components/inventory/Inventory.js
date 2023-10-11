@@ -14,14 +14,16 @@ function Inventory(prop) {
   const { handleSubmit, register } = useForm();
 
   const addInventory = (data) => {
-    const { item, weight } = data;
-    api.post('/inventory', { item, weight, characterId })
+    const { item, weight, description } = data;
+    api.post('/inventory', { item, weight, characterId, description })
       .then((response) => setInventory([...inventory, response.data]));
   };
 
   useEffect(() => {
-    api.get(`/inventory/${characterId}`)
-      .then((i) => setInventory(i.data)).catch((r) => r);
+    if (characterId) {
+      api.get(`/inventory/${characterId}`)
+        .then((i) => setInventory(i.data)).catch((r) => r);
+    }
   }, []);
 
   return (
@@ -32,12 +34,14 @@ function Inventory(prop) {
       >
         <input { ...register('item') } name="item" />
         <input { ...register('weight') } name="weight" />
+        <input { ...register('description') } name="description" />
         <button type="submit">Adicionar</button>
       </form>
       {inventory.length < 1 ? <p>Não tem itens no inventario</p> : inventory.map((i) => (
         <>
           <p>{i.item}</p>
           <p>{i.weight}</p>
+          <p>{i.description}</p>
           <button type="button" onClick={ () => deleteItem(i.id, setInventory) }>
             Deletar
           </button>
