@@ -7,9 +7,18 @@ import Attributes from './attributes.model';
 import Class from './class.model';
 import Inventory from './inventory.model';
 import User from './user.model';
-import Expertise from './expertise.model';
 import Attacks from './attacks.model';
 import HistoryRoll from './history.roll.model';
+import Origins from './origins.model';
+import Trail from './trail.model';
+
+// Nex
+// Desolocamento
+// Defesa
+// Origem
+// Trilha
+// Proteção
+// Resistencia 
 
 @Table({
   tableName: 'character',
@@ -39,6 +48,13 @@ export default class Character extends Model {
 
   @Column({
     type: DataType.INTEGER,
+    field: 'max_health_points',
+    defaultValue: 0,
+  })
+    maxHealthPoints?: number;
+
+  @Column({
+    type: DataType.INTEGER,
     field: 'sanity',
     defaultValue: 0,
   })
@@ -46,10 +62,38 @@ export default class Character extends Model {
 
   @Column({
     type: DataType.INTEGER,
+    field: 'max_sanity',
+    defaultValue: 0,
+  })
+    maxSanity?: number;
+
+  @Column({
+    type: DataType.INTEGER,
     field: 'effort_points',
     defaultValue: 0,
   })
     effortPoints?: number;
+
+  @Column({
+    type: DataType.INTEGER,
+    field: 'nex',
+    defaultValue: 0,
+  })
+    nex?: number;
+
+  @Column({
+    type: DataType.STRING(255),
+    field: 'movement',
+    defaultValue: 0,
+  })
+    movement?: string;
+
+  @Column({
+    type: DataType.INTEGER,
+    field: 'defense',
+    defaultValue: 0,
+  })
+    defense?: number;
 
   @ForeignKey(() => Attributes)
   @Column({
@@ -79,20 +123,6 @@ export default class Character extends Model {
   })
     class?: Class;
 
-  @ForeignKey(() => Expertise)
-  @Column({
-    type: DataType.INTEGER,
-    field: 'expertise_id',
-  })
-    expertiseId?: number;
-
-  @BelongsTo(() => Expertise, {
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
-    hooks: true,
-  })
-    expertise?: Expertise;
-
   @ForeignKey(() => User)
   @Column({
     type: DataType.INTEGER,
@@ -106,6 +136,34 @@ export default class Character extends Model {
     hooks: true,
   })
     user?: User;
+
+  @ForeignKey(() => Origins)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'origin_id',
+  })
+    originId?: number;
+
+  @BelongsTo(() => Origins, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+    origin?: Origins;
+
+  @ForeignKey(() => Trail)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'trail_id',
+  })
+    trailId?: number;
+
+  @BelongsTo(() => Trail, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+    trail?: Trail;
 
   @HasMany(() => Inventory, {
     onUpdate: 'CASCADE',
