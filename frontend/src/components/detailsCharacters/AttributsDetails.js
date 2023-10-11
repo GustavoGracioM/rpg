@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import { upperCase } from '../../utils/utils';
 import api from '../../service/api';
 
-const minUpdate = -1;
-const maxUpdate = 4;
-function DetailsAttributs(prop) {
+const minUpdate = 0;
+const maxUpdate = 5;
+function AttributsDetails(prop) {
+  let count = 0;
   const params = useParams();
   const characterId = params.id ? params.id : params.characterId;
   const { attributes, setAttributes } = prop;
@@ -38,21 +39,20 @@ function DetailsAttributs(prop) {
     const t = { [key]: attributes[key] - 1 };
     updateAttributes(t);
   };
-
   return (
     <>
       <h1>Atributos</h1>
       <form>
         {Object.keys(attributes)
           .map((key) => (
-            <>
-              <p key={ attributes[key] }>{`${upperCase(key)}: ${attributes[key]}`}</p>
+            <div key={ count += 1 }>
+              <p>{`${upperCase(key)}: ${attributes[key]}`}</p>
               <button type="button" onClick={ () => more(key) }>+</button>
               <button type="button" onClick={ () => less(key) }>-</button>
-            </>))}
+            </div>))}
       </form>
     </>
   );
 }
 
-export default DetailsAttributs;
+export default AttributsDetails;
