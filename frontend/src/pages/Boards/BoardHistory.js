@@ -10,7 +10,8 @@ function BoardHistory() {
   useEffect(() => {
     verifyToken().then((userInfo) => {
       api.post('/character/user', { id: userInfo.id });
-      api.post('history-roll/board', { boardId }).then((r) => setHistory(r.data));
+      api.post('history-roll/board', { boardId })
+        .then((r) => setHistory(r.data.reverse()));
     }).catch((e) => console.log(e));
   }, []);
 
