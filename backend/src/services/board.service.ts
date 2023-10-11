@@ -1,5 +1,15 @@
 import NotFound from '../middlewares/errors/NotFound.error';
 import Board from '../models/board.model';
+import User from '../models/user.model';
+
+const returnFilter = {
+  include: {
+    model: User,
+    as: 'user',
+    attributes: { 
+      exclude: ['password'] },
+  }, 
+};
 
 const boardService = {
   create: async ({ name, userId }: { name: string, userId: number }) => Board
@@ -7,7 +17,7 @@ const boardService = {
 
   findAll: async () => Board.findAll(),
 
-  findById: async (id: number) => Board.findByPk(id),
+  findById: async (id: number) => Board.findByPk(id, returnFilter),
 
   findByUserId: async (userId: number) => Board.findAll({ where: { userId } }),
 
