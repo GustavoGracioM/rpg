@@ -4,14 +4,14 @@ import ClassUpdate from './ClassUpdate';
 const template = {
   name: 'Nome',
   healthPoints: 'Pontos de Vida',
+  maxHealthPoints: 'Pontos Maximos de Vida',
   sanity: 'Sanidade',
+  maxSanity: 'Maximo de Sanidade',
   effortPoints: 'PE',
-  class: 'Classe',
 };
 
 function CharacterUpdate(prop) {
-  const {
-    character, type: key, releaseButton, register, control } = prop;
+  const { character, type: key, register } = prop;
 
   const inputs = () => (
     <>
@@ -19,21 +19,14 @@ function CharacterUpdate(prop) {
       <input
         { ...register(key) }
         name={ key }
-        onClick={ (() => releaseButton(key)) }
         defaultValue={ character[key] }
         id={ character[key] }
       />
     </>
   );
 
-  if (key === 'class') {
-    return (<ClassUpdate
-      register={ register }
-      character={ character }
-      releaseButton={ releaseButton }
-      type={ key }
-      control={ control }
-    />);
+  if (key === 'class' || key === 'origin' || key === 'trail') {
+    return (<ClassUpdate type={ key } character={ character } register={ register } />);
   }
   return inputs();
 }
