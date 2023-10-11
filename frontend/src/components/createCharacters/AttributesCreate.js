@@ -4,12 +4,12 @@ import { upperCase } from '../../utils/utils';
 const optionsSkills = ['agilidade', 'forca', 'intelecto', 'presenca', 'vigor'];
 
 const numbers = {
-  oneLess: -1,
   zero: 0,
   one: 1,
   two: 2,
   three: 3,
-  four: 4 };
+  four: 4,
+  five: 5 };
 
 function AttributesCreate(prop) {
   const { register } = prop;
@@ -21,7 +21,6 @@ function AttributesCreate(prop) {
           {upperCase(o)}
           :
           {' '}
-
           <select defaultChecked={ 0 } { ...register(o) } id={ o }>
             {Object.values(numbers).map((g) => (
               <option key={ g } value={ g }>{g}</option>
