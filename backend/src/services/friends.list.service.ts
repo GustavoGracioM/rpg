@@ -38,12 +38,13 @@ const friendsListService = {
     .findAll({ ...innerJoin, where: { friendId, status: 'pending' } }),
 
   findMyFriends: async (userId: number) => {
-    const byUser = await FriendsList
-      .findAll({ ...innerJoin, where: { userId, status: 'approved' } });
-    const byFriend = await FriendsList
-      .findAll({ ...innerJoin, where: { friendId: userId, status: 'approved' } });
-    if (byUser.length < 1) return byFriend.map((f) => f.user);
-    return byUser.map((u) => u.friend);
+    const result = await FriendsList
+      .findAll({ ...innerJoin, 
+        where: { [Op.or]: 
+      [{ userId, status: 'approved' }, { friendId: userId, status: 'approved' }] } });
+    const myFriends = result.map((f) => (f.friendId === userId ? f.user : f.friend)); 
+    if (myFriends.length < 1) throw new NotFound('não tem amigos');
+    return myFriends as User[];
   },
 
   update: async ({ userId, friendId, status }: IFriendsList) => {
