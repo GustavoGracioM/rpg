@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../service/api';
 import verifyToken from '../../utils/verifyToken';
-import DetailsCharacter from '../../components/detailsCharacters/DetailsCharacter';
-import DetailsAttributs from '../../components/detailsCharacters/DetailsAttributs';
-import DetailsExpertise from '../../components/detailsCharacters/DetailsExpertise';
+import CharacterDetails from '../../components/detailsCharacters/CharacterDetails';
+import AttributsDetails from '../../components/detailsCharacters/AttributsDetails';
+import ExpertiseDetails from '../../components/detailsCharacters/ExpertiseDetails';
 import Inventory from '../../components/inventory/Inventory';
 import Attacks from '../../components/attacks/Attacks';
+import NavBar from '../../components/navbar/NavBar';
+import Rituals from '../../components/ritual/Rituals';
+import { setupCharacter } from '../../utils/utils';
 
 function Character() {
   const params = useParams();
@@ -14,17 +17,11 @@ function Character() {
   const navigate = useNavigate();
   const [attributes, setAttributes] = useState({});
   const [character, setCharacter] = useState({});
-
   useEffect(() => {
     verifyToken().then((userInfo) => {
       api.get(`/character/${id}`).then((r) => {
         if (r.data.userId !== userInfo.id) navigate('/character');
-        setCharacter({ name: r.data.name,
-          id: r.data.id,
-          healthPoints: r.data.healthPoints,
-          sanity: r.data.sanity,
-          effortPoints: r.data.effortPoints,
-          class: r.data.class.type });
+        setCharacter(setupCharacter(r.data));
       });
     }).catch(() => navigate('/login'));
   }, []);
@@ -36,6 +33,7 @@ function Character() {
   if (!character) return <h1>Personagem não encontrado</h1>;
   return (
     <>
+      <NavBar />
       <button type="button" onClick={ deleteCharacter }>Deletar</button>
       {params.boardId && (
         <button
@@ -44,13 +42,11 @@ function Character() {
         >
           Historico
         </button>
-
       )}
-      <DetailsCharacter { ...character } />
-      <DetailsAttributs attributes={ attributes } setAttributes={ setAttributes } />
-      <DetailsExpertise
-        attributes={ attributes }
-      />
+      <CharacterDetails character={ character } setCharacter={ setCharacter } />
+      <AttributsDetails attributes={ attributes } setAttributes={ setAttributes } />
+      <ExpertiseDetails attributes={ attributes } />
+      <Rituals />
       <Attacks />
       <Inventory characterId={ character.id } />
     </>
