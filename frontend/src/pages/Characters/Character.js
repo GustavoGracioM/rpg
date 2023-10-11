@@ -10,6 +10,7 @@ import Attacks from '../../components/attacks/Attacks';
 import NavBar from '../../components/navbar/NavBar';
 import Rituals from '../../components/ritual/Rituals';
 import { setupCharacter } from '../../utils/utils';
+import Skill from '../../components/skill/Skill';
 
 function Character() {
   const params = useParams();
@@ -46,6 +47,7 @@ function Character() {
       <CharacterDetails character={ character } setCharacter={ setCharacter } />
       <AttributsDetails attributes={ attributes } setAttributes={ setAttributes } />
       <ExpertiseDetails attributes={ attributes } />
+      <Skill characterId={ character.id } />
       <Rituals />
       <Attacks />
       <Inventory characterId={ character.id } />
