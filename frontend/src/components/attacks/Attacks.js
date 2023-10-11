@@ -41,16 +41,16 @@ function Attacks() {
     <>
       <h1>Ataques </h1>
       <AttacksCreate setAttacks={ setAttacks } />
-      {attacks && attacks.map((a) => (
-        <>
-          <p key={ a.id }>{a.name}</p>
-          <p key={ a.id }>{a.dice}</p>
-          <p key={ a.id }>{a.bonus}</p>
+      {attacks.length < 1 ? <p>Não tem Ataques</p> : attacks && attacks.map((a) => (
+        <div key={ a.id }>
+          <p>{a.name}</p>
+          <p>{a.dice}</p>
+          <p>{a.bonus}</p>
           <button type="button" onClick={ () => rotate(a) }>Rodar</button>
           <button type="button" onClick={ () => deleteAttack(a.id) }>
             Delete
           </button>
-        </>
+        </div>
       ))}
     </>
   );
