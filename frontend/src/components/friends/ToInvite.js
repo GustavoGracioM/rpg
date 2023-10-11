@@ -2,17 +2,23 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import api from '../../service/api';
 
-function InviteFriends() {
+function ToInvite(prop) {
+  const { user } = prop;
   const { handleSubmit, register } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    api.post('/user/name', data).then((r) => console.log(r.data));
+    if (data.name === user.name) return console.log('Esse é o seu nick');
+    api.post('/user/name', data)
+      .then((friend) => api
+        .post('/friends-list', {
+          userId: user.id, friendId: friend.data.id })
+        .catch(() => console.log('Já são amigos')))
+      .catch(() => console.log('usuario não encotrado'));
   };
 
   return (
     <>
-      <p>InviteFriends</p>
+      <p>ToInvite</p>
       <form onSubmit={ handleSubmit(onSubmit) }>
         <label htmlFor="name">
           Nome de usuario:
@@ -24,4 +30,4 @@ function InviteFriends() {
   );
 }
 
-export default InviteFriends;
+export default ToInvite;
