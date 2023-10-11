@@ -27,6 +27,12 @@ export default class Inventory extends Model {
   })
     weight?: string;
 
+  @Column({
+    type: DataType.STRING(255),
+    field: 'description',
+  })
+    description?: string;
+
   @ForeignKey(() => Character)
   @Column({
     type: DataType.INTEGER,
