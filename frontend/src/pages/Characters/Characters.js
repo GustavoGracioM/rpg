@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import api from '../../service/api';
 import verifyToken from '../../utils/verifyToken';
 import CharactersAll from '../../components/CharactersAll';
+import NavBar from '../../components/navbar/NavBar';
 
 function Characters() {
   const navigate = useNavigate();
@@ -21,25 +22,11 @@ function Characters() {
 
   return (
     <>
-      <CharactersAll characters={ characters } setCharacters={ setCharacters } />
-      <button
-        type="button"
-        onClick={ () => navigate('/character/create') }
-      >
+      <NavBar />
+      <button type="button" onClick={ () => navigate('/character/create') }>
         Criar Personagem
       </button>
-      <button
-        type="button"
-        onClick={ () => navigate('/boards') }
-      >
-        Boards
-      </button>
-      <button
-        type="button"
-        onClick={ () => navigate('/invites') }
-      >
-        Invites
-      </button>
+      <CharactersAll characters={ characters } setCharacters={ setCharacters } />
     </>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import verifyToken from '../../utils/verifyToken';
 import api from '../../service/api';
+import ToInvite from '../../components/friends/ToInvite';
+import NavBar from '../../components/navbar/NavBar';
 
 function InviteFriends() {
   const [invites, setInvites] = useState([]);
@@ -21,6 +23,7 @@ function InviteFriends() {
 
   return (
     <>
+      <NavBar />
       <h1>InviteFriends</h1>
       {!invites || invites.length <= 0
         ? <p>Não tem convites pendentes</p> : invites.map((i) => (
@@ -40,6 +43,7 @@ function InviteFriends() {
             </button>
           </div>
         ))}
+      <ToInvite user={ user } />
     </>
   );
 }
