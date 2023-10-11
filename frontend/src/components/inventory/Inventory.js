@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import api from '../../service/api';
 
-const deleteItem = (id, setInventory) => {
+const deleteItem = (id, setInventory, characterId) => {
   api.delete(`/inventory/${id}`)
-    .then(() => api.get('/inventory')
+    .then(() => api.get(`/inventory/${characterId}`)
       .then((i) => setInventory(i.data)).catch((r) => r));
 };
 
@@ -42,7 +42,10 @@ function Inventory(prop) {
           <p>{i.item}</p>
           <p>{i.weight}</p>
           <p>{i.description}</p>
-          <button type="button" onClick={ () => deleteItem(i.id, setInventory) }>
+          <button
+            type="button"
+            onClick={ () => deleteItem(i.id, setInventory, characterId) }
+          >
             Deletar
           </button>
         </>
