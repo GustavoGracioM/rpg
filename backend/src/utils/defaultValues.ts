@@ -1,21 +1,24 @@
 const classValue = [
   {
-    type: 'Especialista',
+    type: 'especialista',
   },
   {
-    type: 'Combatente',
+    type: 'combatente',
   },
   {
-    type: 'Ocultista',
+    type: 'ocultista',
+  },
+  {
+    type: 'mundano',
   },
 ];
 
-const gradeTemplate = {
-  destreindado: '0',
-  treinado: '+5',
-  competente: '+10',
-  expert: '+15',
-};
+const trainingsValues = [
+  { type: 'destreinado', bonus: '0' },
+  { type: 'treinado', bonus: '+5' },
+  { type: 'competente', bonus: '+10' },
+  { type: 'expert', bonus: '+15' },
+];
 
 const attribute = {
   agi: 'agilidade',
@@ -27,7 +30,7 @@ const attribute = {
 const yes = 'Sim';
 const not = '-';
 
-const skillsValue = [
+const expertiseValues = [
   {
     name: 'acrobacia',
     attributeBase: attribute.agi,
@@ -36,6 +39,12 @@ const skillsValue = [
   },
   {
     name: 'adestramento',
+    attributeBase: attribute.pre,
+    trained: yes,
+    chargeFine: not,
+  },
+  {
+    name: 'artes',
     attributeBase: attribute.pre,
     trained: yes,
     chargeFine: not,
@@ -192,4 +201,4 @@ const skillsValue = [
   },
 ];
 
-export default { classValue, skillsValue, gradeTemplate };
+export default { classValue, expertiseValues, trainingsValues };

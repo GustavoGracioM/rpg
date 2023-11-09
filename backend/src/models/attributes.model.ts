@@ -50,6 +50,10 @@ export default class Attributes extends Model {
   })
     vigor?: number;
 
-  @HasMany(() => Character)
+  @HasMany(() => Character, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     character?: Character;
 }

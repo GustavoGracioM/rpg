@@ -5,9 +5,9 @@ import validateAttributes from '../utils/validateObject';
 
 const inventoryController = {
   create: async (req: Request, res: Response) => {
-    const { item, weight, characterId }: IInventory = req.body;
+    const { item, weight, characterId, description }: IInventory = req.body;
     const result = await inventoryService
-      .create({ item, weight, characterId });
+      .create({ item, weight, description, characterId });
     res.status(201).json(result);
   },
 
@@ -24,10 +24,10 @@ const inventoryController = {
 
   update: async (req: Request, res: Response) => { 
     const id = parseInt(req.params.id, 10);
-    const { item, weight }: IInventory = req.body;
+    const { item, weight, description }: IInventory = req.body;
     validateAttributes({ item, weight });
     await inventoryService
-      .update({ id, item, weight });
+      .update({ id, item, weight, description });
     res.status(201).json({ message: 'updated' });
   }, 
 

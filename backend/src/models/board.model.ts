@@ -1,8 +1,6 @@
 import { 
-  Model, Table, Column, DataType, BelongsToMany, HasMany, ForeignKey } from 'sequelize-typescript';
+  Model, Table, Column, DataType, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
 /* eslint-disable import/no-cycle */
-import Character from './character.model';
-import BoardCharacter from './board.character';
 import HistoryRoll from './history.roll.model';
 import User from './user.model';
 
@@ -32,9 +30,13 @@ export default class Board extends Model {
   })
     userId?: number;
 
-  @HasMany(() => HistoryRoll)
-    historyRoll?: HistoryRoll;
+  @BelongsTo(() => User)
+    user?: User;
 
-  @BelongsToMany(() => Character, () => BoardCharacter)
-    characters?: Character[];
+  @HasMany(() => HistoryRoll, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+    historyRoll?: HistoryRoll;
 }

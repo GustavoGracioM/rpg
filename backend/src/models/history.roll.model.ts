@@ -41,7 +41,11 @@ export default class HistoryRoll extends Model {
   })
     characterId?: number;
 
-  @BelongsTo(() => Character)
+  @BelongsTo(() => Character, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     character?: Character;
 
   @ForeignKey(() => Board)
@@ -51,6 +55,10 @@ export default class HistoryRoll extends Model {
   })
     boardId?: number;
 
-  @BelongsTo(() => Board)
+  @BelongsTo(() => Board, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     board?: Board;
 }

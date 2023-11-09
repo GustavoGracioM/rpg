@@ -3,7 +3,8 @@ import NotFound from '../middlewares/errors/NotFound.error';
 import Attributes from '../models/attributes.model';
 import Character from '../models/character.model';
 import Class from '../models/class.model';
-import Expertise from '../models/expertise.model';
+import Origins from '../models/origins.model';
+import Trail from '../models/trail.model';
 
 const returnFilter = {
   include: [{
@@ -14,12 +15,18 @@ const returnFilter = {
   }, {
     model: Class,
     as: 'class',
+    // attributes: { 
+    //   exclude: ['id'] },
+  },
+  {
+    model: Origins,
+    as: 'origin',
     attributes: { 
       exclude: ['id'] },
   },
   {
-    model: Expertise,
-    as: 'expertise',
+    model: Trail,
+    as: 'trail',
     attributes: { 
       exclude: ['id'] },
   },
@@ -29,8 +36,18 @@ const returnFilter = {
 };
 
 const characterService = {
-  create: async ({ name, healthPoints, sanity, effortPoints, userId }: ICharacter) => {
-    const result = await Character.create({ name, healthPoints, sanity, effortPoints, userId });
+  create: async ({ name, 
+    healthPoints, sanity, effortPoints, userId, originId, trailId }: ICharacter) => {
+    const result = await Character.create({ 
+      name, 
+      healthPoints, 
+      maxHealthPoints: healthPoints, 
+      sanity, 
+      maxSanity: sanity, 
+      effortPoints, 
+      userId,
+      originId,
+      trailId });
     return result; 
   },
 

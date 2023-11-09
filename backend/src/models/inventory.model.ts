@@ -27,6 +27,12 @@ export default class Inventory extends Model {
   })
     weight?: string;
 
+  @Column({
+    type: DataType.STRING(255),
+    field: 'description',
+  })
+    description?: string;
+
   @ForeignKey(() => Character)
   @Column({
     type: DataType.INTEGER,
@@ -34,6 +40,10 @@ export default class Inventory extends Model {
   })
     characterId?: number;
 
-  @BelongsTo(() => Character)
+  @BelongsTo(() => Character, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     character?: Character;
 }

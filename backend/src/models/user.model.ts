@@ -1,8 +1,9 @@
-import { Model, Table, Column, DataType, HasMany } from 'sequelize-typescript';
+import { Model, Table, Column, DataType, HasMany, BelongsToMany } from 'sequelize-typescript';
 /* eslint-disable import/no-cycle */
 import Character from './character.model';
 import Board from './board.model';
 import FriendsList from './friends.list.model';
+import BoardUser from './board.user';
 
 @Table({
   tableName: 'user',
@@ -35,12 +36,27 @@ export default class User extends Model {
   })
     password?: string;
 
-  @HasMany(() => Character)
+  @HasMany(() => Character, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     character?: Character;
 
-  @HasMany(() => Board)
+  @HasMany(() => Board, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     board?: Board;
 
-  @HasMany(() => FriendsList)
+  @HasMany(() => FriendsList, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     friendList?: FriendsList;
+
+  @BelongsToMany(() => Board, () => BoardUser)
+    boards?: Board[];
 }

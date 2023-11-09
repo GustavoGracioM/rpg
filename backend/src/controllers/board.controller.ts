@@ -20,6 +20,12 @@ const boardController = {
     res.status(200).json(result);
   },
 
+  findByUserId: async (req: Request, res: Response) => {
+    const { userId }: { userId:number } = req.body;
+    const result = await boardService.findByUserId(userId);
+    res.status(200).json(result);
+  },
+
   update: async (req: Request, res: Response) => { 
     const id = parseInt(req.params.id, 10);
     const { name }: { name: string } = req.body;

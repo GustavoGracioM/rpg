@@ -4,9 +4,10 @@ import ICharacter from '../interfaces/character.interface';
 
 const characterController = {
   create: async (req: Request, res: Response) => {
-    const { name, healthPoints, sanity, effortPoints, userId }: ICharacter = req.body;
+    const { name, 
+      healthPoints, sanity, effortPoints, userId, originId, trailId }: ICharacter = req.body;
     const result = await characterService
-      .create({ name, healthPoints, sanity, effortPoints, userId });
+      .create({ name, healthPoints, sanity, effortPoints, userId, originId, trailId });
     res.status(201).json(result);
   },
 
@@ -29,8 +30,20 @@ const characterController = {
 
   update: async (req: Request, res: Response) => {
     const id = parseInt(req.params.id, 10);
-    const { name, healthPoints, sanity, effortPoints, classId } = req.body;
-    await characterService.update({ id, name, healthPoints, sanity, effortPoints, classId });
+    const { name, 
+      healthPoints, 
+      maxHealthPoints, sanity, maxSanity, effortPoints, classId, originId, trailId } = req.body;
+    await characterService.update({ 
+      id, 
+      name,
+      healthPoints,
+      maxHealthPoints,
+      sanity,
+      maxSanity,
+      effortPoints,
+      classId,
+      originId,
+      trailId });
     res.status(201).json({ messgae: `updated id=${id}` });
   },
 

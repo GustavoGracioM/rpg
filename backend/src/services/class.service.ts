@@ -23,6 +23,8 @@ const classService = {
 
   findAll: async () => Class.findAll(),
 
+  findByName: async (type: string) => Class.findOne({ where: { type } }),
+
   delete: async () => Class.destroy({ where: {}, truncate: false }),
 
   deleteById: async (id: number) => {

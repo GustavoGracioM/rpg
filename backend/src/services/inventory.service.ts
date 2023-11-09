@@ -3,15 +3,15 @@ import NotFound from '../middlewares/errors/NotFound.error';
 import Inventory from '../models/inventory.model';
 
 const inventoryService = {
-  create: async ({ item, weight, characterId }: IInventory) => Inventory
-    .create({ item, weight, characterId }),
+  create: async ({ item, weight, characterId, description }: IInventory) => Inventory
+    .create({ item, weight, characterId, description }),
 
   findAll: async () => Inventory.findAll(),
 
   findCharacter: async (characterId: number) => Inventory.findAll({ where: { characterId } }),
 
-  update: async ({ id, item, weight }: IInventoryInfo) => {
-    const result = await Inventory.update({ item, weight }, { where: { id } });
+  update: async ({ id, item, weight, description }: IInventoryInfo) => {
+    const result = await Inventory.update({ item, weight, description }, { where: { id } });
     if (result[0] < 1) throw new NotFound('id inventory invalid');
     return result;
   },

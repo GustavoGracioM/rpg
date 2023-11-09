@@ -5,6 +5,7 @@ import friendsListService from '../services/friends.list.service';
 const friendsListController = {
   create: async (req: Request, res: Response) => {
     const { userId, friendId, status }: IFriendsList = req.body;
+    await friendsListService.isFriends(userId, friendId);
     const result = await friendsListService
       .create({ userId, friendId, status });
     res.status(201).json(result);
@@ -18,6 +19,12 @@ const friendsListController = {
   findInvites: async (req: Request, res: Response) => {
     const { friendId }: { friendId: number } = req.body;
     const result = await friendsListService.findInvites(friendId);
+    res.status(200).json(result);
+  },
+
+  findMyFriends: async (req: Request, res: Response) => {
+    const { userId }: { userId: number } = req.body;
+    const result = await friendsListService.findMyFriends(userId);
     res.status(200).json(result);
   },
 

@@ -40,6 +40,10 @@ export default class Attacks extends Model {
   })
     characterId?: number;
 
-  @BelongsTo(() => Character)
+  @BelongsTo(() => Character, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
     character?: Character;
 }

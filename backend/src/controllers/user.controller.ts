@@ -7,6 +7,7 @@ const userController = {
   
   create: async (req: Request, res: Response) => {
     const { name, email, password } = req.body;
+    await userService.isUserName(name);
     const result = await userService
       .create({ name, email, password });
     res.status(201).json({ token: result });
