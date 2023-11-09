@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Button } from '@mui/material';
 import verifyToken from '../../utils/verifyToken';
+import { useAppThemeContext } from '../../shared/contexts/ThemeContext';
 
 function NavBar() {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
+  const { toggleTheme } = useAppThemeContext();
   useEffect(() => {
     verifyToken().then((userInfo) => {
       setUser(userInfo);
@@ -29,6 +32,7 @@ function NavBar() {
         Sair
       </button>
       {user.name}
+      <Button onClick={ toggleTheme }>mudar</Button>
     </nav>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Button } from '@mui/material';
 import api from '../../service/api';
 
 function Login() {
@@ -28,7 +29,7 @@ function Login() {
     <form onSubmit={ handleSubmit(onSubmit) }>
       <input { ...register('email') } name="email" />
       <input { ...register('password') } name="password" />
-      <button type="submit">entrar</button>
+      <Button variant="contained" color="primary">entrar</Button>
       {errorMessage ? <p>Email ou Senha Invalidos</p> : <br />}
       <br />
       <button type="button" onClick={ () => navigateUrl('/register') }>cadastrar</button>
