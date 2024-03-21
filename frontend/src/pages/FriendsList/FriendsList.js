@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import verifyToken from '../../utils/verifyToken';
 import api from '../../service/api';
 import NavBar from '../../components/navbar/NavBar';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function FriendsList() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function FriendsList() {
   }, []);
 
   return (
-    <>
+    <DarkThema>
       <NavBar />
       <h1>Friends</h1>
       <button
@@ -26,7 +27,7 @@ function FriendsList() {
         Invites
       </button>
       {friends.map((f) => <p key={ f.id }>{f.name}</p>)}
-    </>
+    </DarkThema>
   );
 }
 

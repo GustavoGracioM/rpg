@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import verifyToken from '../../utils/verifyToken';
 import api from '../../service/api';
 import NavBar from '../../components/navbar/NavBar';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function BoardInvites() {
   const [invites, setInvites] = useState([]);
@@ -29,7 +30,7 @@ function BoardInvites() {
     });
   }, []);
   return (
-    <>
+    <DarkThema>
       <NavBar />
       <h1>BoardInvites</h1>
       {invites.length <= 0
@@ -45,7 +46,7 @@ function BoardInvites() {
             </button>
           </div>
         ))}
-    </>
+    </DarkThema>
   );
 }
 

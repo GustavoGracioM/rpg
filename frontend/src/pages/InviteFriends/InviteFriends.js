@@ -3,6 +3,7 @@ import verifyToken from '../../utils/verifyToken';
 import api from '../../service/api';
 import ToInvite from '../../components/friends/ToInvite';
 import NavBar from '../../components/navbar/NavBar';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function InviteFriends() {
   const [invites, setInvites] = useState([]);
@@ -22,7 +23,7 @@ function InviteFriends() {
   };
 
   return (
-    <>
+    <DarkThema>
       <NavBar />
       <h1>InviteFriends</h1>
       {!invites || invites.length <= 0
@@ -44,7 +45,7 @@ function InviteFriends() {
           </div>
         ))}
       <ToInvite user={ user } />
-    </>
+    </DarkThema>
   );
 }
 

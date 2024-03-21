@@ -4,6 +4,7 @@ import verifyToken from '../../utils/verifyToken';
 import api from '../../service/api';
 import IniviteFriendsBoard from '../../components/boards/InviteFriendsBoard';
 import NavBar from '../../components/navbar/NavBar';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function Board() {
   const params = useParams();
@@ -24,7 +25,7 @@ function Board() {
   }, []);
 
   return (
-    <>
+    <DarkThema>
       <NavBar />
       {board && (
         <>
@@ -47,7 +48,7 @@ function Board() {
           </button>
         </>
       ))}
-    </>
+    </DarkThema>
   );
 }
 

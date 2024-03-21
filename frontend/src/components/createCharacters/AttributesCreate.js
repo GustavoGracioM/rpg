@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { upperCase } from '../../utils/utils';
 
 const optionsSkills = ['agilidade', 'forca', 'intelecto', 'presenca', 'vigor'];
@@ -17,16 +18,16 @@ function AttributesCreate(prop) {
     <>
       <h1>Atributos</h1>
       {optionsSkills.map((o) => (
-        <p key={ o } htmlFor={ o }>
-          {upperCase(o)}
-          :
-          {' '}
-          <select defaultChecked={ 0 } { ...register(o) } id={ o }>
+        <FormControl key={ o } variant="standard" sx={ { m: 1, minWidth: 120 } }>
+          <InputLabel key={ o } htmlFor={ o } id={ o }>
+            {upperCase(o)}
+          </InputLabel>
+          <Select defaultChecked={ 0 } { ...register(o) } id={ o }>
             {Object.values(numbers).map((g) => (
-              <option key={ g } value={ g }>{g}</option>
+              <MenuItem key={ g } value={ g }>{g}</MenuItem>
             ))}
-          </select>
-        </p>
+          </Select>
+        </FormControl>
       ))}
     </>
   );

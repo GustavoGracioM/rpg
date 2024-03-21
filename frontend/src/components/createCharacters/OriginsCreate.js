@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import verifyToken from '../../utils/verifyToken';
 import api from '../../service/api';
 
@@ -20,22 +21,25 @@ function OriginsCreate(prop) {
   };
 
   return (
-    <>
-      <p>Origem:</p>
-      <select
+    <FormControl variant="standard" sx={ { m: 1, minWidth: 120 } }>
+      <InputLabel htmlFor="origin" id="origin">
+        Origem
+      </InputLabel>
+      <Select
         value={ originId }
+        id="origin"
         onChange={ (e) => onHandler(e) }
       >
         {origins.map((o) => (
-          <option
+          <MenuItem
             key={ o.id }
             value={ o.id }
           >
             {o.name}
-          </option>
+          </MenuItem>
         ))}
-      </select>
-    </>
+      </Select>
+    </FormControl>
   );
 }
 

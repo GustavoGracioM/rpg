@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import rollParser from 'roll-parser';
-// import { useParams } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import api from '../../service/api';
 import { upperCase } from '../../utils/utils';
 
@@ -65,7 +65,7 @@ function ButtonRotate(prop) {
   };
 
   return (
-    <button type="button" onClick={ rotate }>Rodar</button>
+    <Button variant="contained" type="button" onClick={ rotate }>Rodar</Button>
   );
 }
 

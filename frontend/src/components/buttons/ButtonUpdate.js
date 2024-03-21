@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@mui/material';
 import api from '../../service/api';
 
 function ButtonUpdate(prop) {
@@ -11,7 +12,7 @@ function ButtonUpdate(prop) {
   };
 
   return (
-    <button
+    <Button
       type="button"
       onClick={ handleSubmit((data) => {
         update(data);
@@ -20,7 +21,7 @@ function ButtonUpdate(prop) {
       }) }
     >
       Update
-    </button>
+    </Button>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import verifyToken from '../../utils/verifyToken';
 import api from '../../service/api';
 
@@ -37,20 +38,31 @@ function TrailCreate(prop) {
 
   const sets = { setClassId, setTrailId, setTrail };
   return (
-    <>
-      <p>Classe:</p>
-      <select value={ classId } onChange={ (e) => t({ e, ...sets }) }>
-        {characterClass.map((c) => <option key={ c.id } value={ c.id }>{c.type}</option>)}
-      </select>
+    <FormControl variant="standard" sx={ { m: 1, minWidth: 120 } }>
+      <InputLabel htmlFor="class" id="class">Classe</InputLabel>
+      <Select value={ classId } id="class" onChange={ (e) => t({ e, ...sets }) }>
+        {characterClass.map((c) => (
+          <MenuItem
+            key={ c.id }
+            value={ c.id }
+          >
+            {c.type}
+          </MenuItem>
+        ))}
+      </Select>
       {trail.length > 1 && (
-        <>
-          <p>Trilha:</p>
-          <select value={ trailId } onChange={ (e) => setValue(e, setTrailId) }>
-            {trail.map((o) => <option key={ o.id } value={ o.id }>{o.name}</option>)}
-          </select>
-        </>
+        <FormControl variant="standard" sx={ { m: 1, minWidth: 120 } }>
+          <InputLabel htmlFor="trail" id="trail">Trilha</InputLabel>
+          <Select
+            value={ trailId }
+            id="trail"
+            onChange={ (e) => setValue(e, setTrailId) }
+          >
+            {trail.map((o) => <MenuItem key={ o.id } value={ o.id }>{o.name}</MenuItem>)}
+          </Select>
+        </FormControl>
       )}
-    </>
+    </FormControl>
   );
 }
 

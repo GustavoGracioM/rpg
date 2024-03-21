@@ -1,12 +1,12 @@
 import React from 'react';
+import { TextField } from '@mui/material';
 
 function CharacterCreate(prop) {
   const { register } = prop;
   return (
     <>
       <h1>Informações Basicas</h1>
-      <p>Nome: </p>
-      <input name="name" { ...register('name') } />
+      <TextField label="Nome" name="name" variant="standard" { ...register('name') } />
 
     </>
   );

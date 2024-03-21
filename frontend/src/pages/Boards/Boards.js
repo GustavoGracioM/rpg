@@ -5,6 +5,7 @@ import CreateBoard from '../../components/boards/CreateBoard';
 import verifyToken from '../../utils/verifyToken';
 import NavBar from '../../components/navbar/NavBar';
 import BoardsList from '../../components/boards/BoardList';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function Boards() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function Boards() {
     }).catch(() => navigate('/login'));
   }, []);
   return (
-    <>
+    <DarkThema>
       <NavBar />
       <h1>Boards</h1>
       <CreateBoard user={ user } setBoards={ setBoards } />
@@ -43,7 +44,7 @@ function Boards() {
           board={ b.board }
           userId={ user.id }
         />))}
-    </>
+    </DarkThema>
   );
 }
 

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { IconButton, Tooltip } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import api from '../../service/api';
 import verifyToken from '../../utils/verifyToken';
 import CharacterDetails from '../../components/detailsCharacters/CharacterDetails';
@@ -11,6 +13,7 @@ import NavBar from '../../components/navbar/NavBar';
 import Rituals from '../../components/ritual/Rituals';
 import { setupCharacter } from '../../utils/utils';
 import Skill from '../../components/skill/Skill';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function Character() {
   const params = useParams();
@@ -33,9 +36,13 @@ function Character() {
 
   if (!character) return <h1>Personagem não encontrado</h1>;
   return (
-    <>
+    <DarkThema>
       <NavBar />
-      <button type="button" onClick={ deleteCharacter }>Deletar</button>
+      <Tooltip title="Delete">
+        <IconButton>
+          <DeleteIcon onClick={ deleteCharacter } />
+        </IconButton>
+      </Tooltip>
       {params.boardId && (
         <button
           type="button"
@@ -51,7 +58,7 @@ function Character() {
       <Rituals />
       <Attacks />
       <Inventory characterId={ character.id } />
-    </>
+    </DarkThema>
   );
 }
 

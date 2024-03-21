@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Button } from '@mui/material';
 import verifyToken from '../../utils/verifyToken';
 import CharacterCreate from '../../components/createCharacters/CharacterCreate';
 import AttributesCreate from '../../components/createCharacters/AttributesCreate';
@@ -9,6 +10,7 @@ import OriginsCreate from '../../components/createCharacters/OriginsCreate';
 import TrailCreate from '../../components/createCharacters/TrailCreate';
 import api from '../../service/api';
 import { setClassStates } from '../../utils/utils';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 const findCLass = (classId, classInfo, attributes) => {
   const [presenca, vigor] = [
@@ -70,7 +72,7 @@ function CreateCharacter() {
       }).catch((err) => console.log(err));
   };
   return (
-    <>
+    <DarkThema>
       <NavBar />
       <form onSubmit={ handleSubmit(onSubmit) }>
         <CharacterCreate register={ register } />
@@ -82,9 +84,9 @@ function CreateCharacter() {
         />
         <OriginsCreate originId={ originId } setOriginId={ setOriginId } />
         <AttributesCreate register={ register } />
-        <button type="submit">Entrar</button>
+        <Button type="submit" variant="contained">Entrar</Button>
       </form>
-    </>
+    </DarkThema>
   );
 }
 

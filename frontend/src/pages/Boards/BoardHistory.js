@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import verifyToken from '../../utils/verifyToken';
 import api from '../../service/api';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function BoardHistory() {
   const params = useParams();
@@ -16,7 +17,7 @@ function BoardHistory() {
   }, []);
 
   return (
-    <>
+    <DarkThema>
       <h1>BoardHistory</h1>
       {history.map((h) => (
         <div key={ h.id }>
@@ -37,7 +38,7 @@ function BoardHistory() {
           </p>
         </div>
       )) }
-    </>
+    </DarkThema>
   );
 }
 

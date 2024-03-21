@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import api from '../../service/api';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function Login() {
   const navigate = useNavigate();
@@ -25,14 +26,22 @@ function Login() {
   }
 
   return (
-    <form onSubmit={ handleSubmit(onSubmit) }>
-      <input { ...register('email') } name="email" />
-      <input { ...register('password') } name="password" />
-      <button type="submit">entrar</button>
-      {errorMessage ? <p>Email ou Senha Invalidos</p> : <br />}
-      <br />
-      <button type="button" onClick={ () => navigateUrl('/register') }>cadastrar</button>
-    </form>
+    <DarkThema>
+      <form onSubmit={ handleSubmit(onSubmit) }>
+        <input { ...register('email') } name="email" />
+        <input { ...register('password') } name="password" />
+        <button type="submit">entrar</button>
+        {errorMessage ? <p>Email ou Senha Invalidos</p> : <br />}
+        <br />
+        <button
+          type="button"
+          onClick={ () => navigateUrl('/register') }
+        >
+          cadastrar
+
+        </button>
+      </form>
+    </DarkThema>
   );
 }
 

@@ -4,6 +4,7 @@ import api from '../../service/api';
 import verifyToken from '../../utils/verifyToken';
 import CharactersAll from '../../components/CharactersAll';
 import NavBar from '../../components/navbar/NavBar';
+import DarkThema from '../../components/darkThema/DarkThema';
 
 function Characters() {
   const navigate = useNavigate();
@@ -21,13 +22,10 @@ function Characters() {
   }, []);
 
   return (
-    <>
+    <DarkThema>
       <NavBar />
-      <button type="button" onClick={ () => navigate('/character/create') }>
-        Criar Personagem
-      </button>
       <CharactersAll characters={ characters } setCharacters={ setCharacters } />
-    </>
+    </DarkThema>
   );
 }
 
