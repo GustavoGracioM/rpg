@@ -5,3 +5,4 @@ Criado para permitir que as pessoas organizem mesas de RPG e joguem online com s
 
 
 <img src="https://m.media-amazon.com/images/M/MV5BZWUxN2ZhNmMtYjk0Yy00MTU1LWFhOGEtNTljNzJiYWI2NTJhXkEyXkFqcGdeQXVyOTA1ODU0Mzc@._V1_.jpg">
+(Em desenvolvimento)
